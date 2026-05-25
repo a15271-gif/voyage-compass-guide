@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import velaLogo from "@/assets/vela-logo-header.png";
+
 
 const navLinks = [
   { name: "Início", path: "/" },
@@ -59,18 +61,19 @@ const Header = () => {
               : "opacity-100 scale-100"
           }`}
         >
-          {/* Logo as inset circular badge */}
+          {/* Logo */}
           <Link
             to="/"
-            className="relative -ml-1 flex items-center justify-center h-12 w-12 rounded-full bg-background border border-white/15 overflow-hidden shrink-0 transition-transform hover:scale-105"
+            className="relative -ml-1 flex items-center justify-center h-12 px-3 shrink-0 transition-transform hover:scale-105"
             aria-label="Início"
           >
             <img
-              src="/lovable-uploads/894b6f27-88af-476b-a469-db2ace67eb75.png"
+              src={velaLogo}
               alt="Vela Agency"
-              className="h-10 w-10 object-contain"
+              className="h-9 w-auto object-contain"
             />
           </Link>
+
 
           {/* Desktop links with animated dot indicator */}
           <div
