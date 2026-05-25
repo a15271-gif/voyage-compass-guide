@@ -50,81 +50,104 @@ const Header = () => {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <nav className="relative bg-background/50 backdrop-blur-2xl border border-white/10 rounded-full pl-2 pr-2 py-2 shadow-strong font-montserrat flex items-center gap-1">
-        {/* Logo as inset circular badge */}
-        <Link
-          to="/"
-          className="relative -ml-1 flex items-center justify-center h-12 w-12 rounded-full bg-background border border-white/15 overflow-hidden shrink-0 transition-transform hover:scale-105"
-          aria-label="Início"
+      <div className="relative">
+        {/* Full nav */}
+        <nav
+          className={`relative bg-background/50 backdrop-blur-2xl border border-white/10 rounded-full pl-2 pr-2 py-2 shadow-strong font-montserrat flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
+            collapsed
+              ? "opacity-0 scale-90 pointer-events-none blur-sm"
+              : "opacity-100 scale-100"
+          }`}
         >
-          <img
-            src="/lovable-uploads/894b6f27-88af-476b-a469-db2ace67eb75.png"
-            alt="Vela Agency"
-            className="h-10 w-10 object-contain"
-          />
-        </Link>
-
-        {/* Desktop links with animated dot indicator */}
-        <div
-          ref={listRef}
-          className="hidden md:flex items-center relative px-3"
-          onMouseLeave={() => {
-            const idx = navLinks.findIndex((l) => l.path === pathname);
-            if (idx >= 0) moveTo(idx);
-            else setIndicator((s) => ({ ...s, opacity: 0 }));
-          }}
-        >
-          {navLinks.slice(0, 4).map((link, i) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              ref={(el) => {
-                linkRefs.current[i] = el;
-              }}
-              onMouseEnter={() => moveTo(i)}
-              className={`px-4 py-2 text-sm font-medium transition-colors ${
-                pathname === link.path
-                  ? "text-foreground"
-                  : "text-foreground/70 hover:text-foreground"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          {/* Yellow indicator dot */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -bottom-0.5 left-0 h-2 w-2 rounded-full bg-primary transition-all duration-300 ease-out"
-            style={{
-              transform: `translateX(${indicator.x}px)`,
-              opacity: indicator.opacity,
-            }}
-          />
-        </div>
-
-        {/* CTA inset pill */}
-        <Link to="/quote" className="hidden md:block">
-          <Button
-            size="sm"
-            className="rounded-full bg-secondary hover:bg-secondary-hover text-foreground border border-white/10 shadow-none hover:-translate-y-0 h-10 px-5"
+          {/* Logo as inset circular badge */}
+          <Link
+            to="/"
+            className="relative -ml-1 flex items-center justify-center h-12 w-12 rounded-full bg-background border border-white/15 overflow-hidden shrink-0 transition-transform hover:scale-105"
+            aria-label="Início"
           >
-            Contacto
-          </Button>
-        </Link>
+            <img
+              src="/lovable-uploads/894b6f27-88af-476b-a469-db2ace67eb75.png"
+              alt="Vela Agency"
+              className="h-10 w-10 object-contain"
+            />
+          </Link>
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden text-foreground p-2 mx-1 hover:bg-accent/50 rounded-full transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          {/* Desktop links with animated dot indicator */}
+          <div
+            ref={listRef}
+            className="hidden md:flex items-center relative px-3"
+            onMouseLeave={() => {
+              const idx = navLinks.findIndex((l) => l.path === pathname);
+              if (idx >= 0) moveTo(idx);
+              else setIndicator((s) => ({ ...s, opacity: 0 }));
+            }}
+          >
+            {navLinks.slice(0, 4).map((link, i) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                ref={(el) => {
+                  linkRefs.current[i] = el;
+                }}
+                onMouseEnter={() => moveTo(i)}
+                className={`px-4 py-2 text-sm font-medium transition-colors ${
+                  pathname === link.path
+                    ? "text-foreground"
+                    : "text-foreground/70 hover:text-foreground"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            {/* Yellow indicator dot */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -bottom-0.5 left-0 h-2 w-2 rounded-full bg-primary transition-all duration-300 ease-out"
+              style={{
+                transform: `translateX(${indicator.x}px)`,
+                opacity: indicator.opacity,
+              }}
+            />
+          </div>
+
+          {/* CTA inset pill */}
+          <Link to="/quote" className="hidden md:block">
+            <Button
+              size="sm"
+              className="rounded-full bg-secondary hover:bg-secondary-hover text-foreground border border-white/10 shadow-none hover:-translate-y-0 h-10 px-5"
+            >
+              Contacto
+            </Button>
+          </Link>
+
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden text-foreground p-2 mx-1 hover:bg-accent/50 rounded-full transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </nav>
+
+        {/* Collapsed pill */}
+        <Link
+          to="/contact"
+          className={`absolute inset-0 m-auto flex items-center gap-2 h-12 px-5 rounded-full bg-background/60 backdrop-blur-2xl border border-white/10 shadow-strong font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-background/80 hover:-translate-y-0.5 w-fit ${
+            collapsed
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-90 pointer-events-none blur-sm"
+          }`}
         >
-          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
+          <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+          Vamos trabalhar juntos
+          <ArrowRight size={14} className="opacity-70" />
+        </Link>
+      </div>
 
       {/* Mobile menu */}
-      {isMenuOpen && (
+      {isMenuOpen && !collapsed && (
         <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-strong animate-fade-in">
           <div className="space-y-1">
             {navLinks.map((link) => (
