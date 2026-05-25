@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const CookiePolicy = () => {
@@ -12,7 +11,6 @@ const CookiePolicy = () => {
         <meta name="robots" content="noindex, follow" />
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia vela" />
       </Helmet>
-      <Header />
       <main className="container mx-auto px-4 pt-44 pb-24">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-foreground">Política de Cookies</h1>

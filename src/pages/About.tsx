@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -21,7 +20,6 @@ const About = () => {
         <meta property="og:url" content="https://vela-digital-navigator.lovable.app/about" />
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, agência vela, sobre nós, especialista marketing, especialista digital, profissional web, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia de comunicacao, agencia de webdesign, agencia vela, sobre nos" />
       </Helmet>
-      <Header />
       
       {/* Hero Section */}
       <section className="pt-44 pb-20 bg-accent">

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
@@ -141,7 +140,6 @@ const Services = () => {
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, criação de website, web design, SEO, google meu negócio, gestão de redes sociais, branding, criação de logo, agentes IA, marketing low-cost, serviços marketing digital, web design algarve, web design tavira, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia de comunicacao, agencia de webdesign, agencia vela, criacao de website, criacao de websites, criacao de logo, gestao de redes sociais, google meu negocio, servicos marketing digital" />
         <script type="application/ld+json">{JSON.stringify(servicesJsonLd)}</script>
       </Helmet>
-      <Header />
       
       {/* Hero Section */}
       <section className="pt-44 pb-20 bg-accent">
