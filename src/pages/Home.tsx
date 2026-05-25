@@ -122,13 +122,10 @@ const Home = () => {
         </div>
         
         <div className="container mx-auto px-4 z-10 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight min-h-[1.2em]">
-            {/* Texto para SEO - visualmente oculto mas acessível a crawlers */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white mb-8 leading-[1.05] min-h-[1.2em] text-balance">
             <span className="sr-only">
               Bem-vindo à Vela! A tua agência de marketing e webdesign no Algarve e todo Portugal!
             </span>
-            
-            {/* Animação visível para utilizadores */}
             <span aria-hidden="true">
               <TextType
                 text={[
@@ -148,15 +145,17 @@ const Home = () => {
               />
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">Especialistas em criação de websites, web design, SEO, Google Meu Negócio e gestão de redes sociais. Sites desde <span className="text-primary font-semibold">700€</span>. Marketing low-cost profissional para pequenos negócios.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <p className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed font-normal text-balance">
+            Especialistas em criação de websites, web design, SEO, Google Meu Negócio e gestão de redes sociais. Sites desde <span className="text-white font-medium">700€</span>. Marketing low-cost profissional para pequenos negócios.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/quote">
-              <Button size="lg" className="bg-primary hover:bg-primary-hover text-primary-foreground text-lg px-8 py-6">
+              <Button size="lg" className="text-base px-8">
                 Peça um orçamento
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-secondary">
+              <Button size="lg" variant="outline" className="text-base px-8 text-white">
                 Fale connosco
               </Button>
             </Link>
@@ -228,13 +227,13 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pillars.map((pillar, index) => <div key={index} className="text-center p-8 rounded-lg bg-card shadow-elegant hover:shadow-strong transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-primary/10 mb-6">
-                  {typeof pillar.icon === 'string' ? <span className="text-primary text-3xl font-bold animate-pulse-strong">{pillar.icon}</span> : index === 0 ? <pillar.icon size={32} className="text-primary animate-shake" /> : <pillar.icon size={32} className="text-primary animate-draw" />}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {pillars.map((pillar, index) => <div key={index} className="group text-center p-10 rounded-3xl bg-card/60 backdrop-blur-xl border border-white/[0.06] shadow-elegant hover:shadow-strong hover:border-white/[0.12] hover:-translate-y-1 transition-all duration-500 ease-out">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 border border-primary/15 mb-6 group-hover:scale-105 transition-transform duration-500">
+                  {typeof pillar.icon === 'string' ? <span className="text-primary text-3xl font-semibold animate-pulse-strong">{pillar.icon}</span> : index === 0 ? <pillar.icon size={30} className="text-primary animate-shake" /> : <pillar.icon size={30} className="text-primary animate-draw" />}
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">{pillar.title}</h3>
-                <p className="text-muted-foreground">{pillar.description}</p>
+                <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-3">{pillar.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
               </div>)}
           </div>
 
@@ -338,16 +337,16 @@ const Home = () => {
           }} className="w-full">
               <CarouselContent>
                 {testimonials.map((testimonial, index) => <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/1">
-                    <div className="bg-card p-8 rounded-lg shadow-elegant h-full mx-2 flex flex-col">
-                      <Quote className="text-primary mb-4" size={40} />
-                      <p className="text-foreground mb-6 text-lg italic">"{testimonial.content}"</p>
-                      <div className="flex items-end justify-between gap-4">
+                    <div className="bg-card/60 backdrop-blur-xl border border-white/[0.06] p-10 rounded-3xl shadow-elegant h-full mx-2 flex flex-col">
+                      <Quote className="text-primary/80 mb-5" size={36} />
+                      <p className="text-foreground/90 mb-8 text-lg leading-relaxed font-light">"{testimonial.content}"</p>
+                      <div className="flex items-end justify-between gap-4 mt-auto pt-4 border-t border-white/[0.06]">
                         <div>
-                          <p className="font-bold text-foreground">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                          <p className="font-semibold tracking-tight text-foreground">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground mt-0.5">{testimonial.role}</p>
                         </div>
-                        <a href={testimonial.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium inline-flex items-center gap-1 whitespace-nowrap">
-                          Visitar site <ArrowRight size={16} />
+                        <a href={testimonial.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center gap-1 whitespace-nowrap transition-colors">
+                          Visitar site <ArrowRight size={14} />
                         </a>
                       </div>
                     </div>
@@ -369,16 +368,18 @@ const Home = () => {
       </section>
 
       {/* Final CTA */}
-      <section ref={ctaSection.elementRef} className="py-20 bg-gradient-hero">
-        <div className={`container mx-auto px-4 text-center transition-all duration-700 ${ctaSection.isVisible ? 'animate-scale-up' : 'opacity-0'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      <section ref={ctaSection.elementRef} className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-gradient-radial opacity-60" />
+        <div className={`container mx-auto px-4 text-center relative z-10 transition-all duration-700 ${ctaSection.isVisible ? 'animate-scale-up' : 'opacity-0'}`}>
+          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6 text-balance">
             Pronto para começar?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
             Peça o seu orçamento gratuito e sem compromisso. Respondemos em menos de 24 horas.
           </p>
           <Link to="/quote">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
+            <Button size="lg" className="bg-white text-primary hover:bg-white/95 text-base px-8 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
               Pedir Orçamento Gratuito
             </Button>
           </Link>
