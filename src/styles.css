@@ -196,15 +196,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-montserrat);
-    letter-spacing: -0.01em;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-oswald);
     font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
+    text-transform: uppercase;
   }
-  h1 { letter-spacing: -0.035em; font-weight: 700; }
-  h2 { letter-spacing: -0.03em; }
   p { line-height: 1.6; }
 }
