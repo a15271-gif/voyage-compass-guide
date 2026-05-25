@@ -70,7 +70,9 @@ const Header = () => {
             <Link
               key={link.path}
               to={link.path}
-              ref={(el) => (linkRefs.current[i] = el)}
+              ref={(el) => {
+                linkRefs.current[i] = el;
+              }}
               onMouseEnter={() => moveTo(i)}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 pathname === link.path
