@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -73,7 +72,6 @@ const Contact = () => {
         <meta property="og:url" content="https://vela-digital-navigator.lovable.app/contact" />
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, contacto agência vela, orçamento marketing, contacto web design, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia vela, contacto agencia vela, orcamento marketing" />
       </Helmet>
-      <Header />
       
       {/* Hero Section */}
       <section className="pt-44 pb-20 bg-accent">

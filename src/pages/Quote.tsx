@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -104,7 +103,6 @@ const Quote = () => {
         <meta property="og:url" content="https://vela-digital-navigator.lovable.app/quote" />
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, orçamento marketing, orçamento web design, orçamento gratuito, agência vela, marketing low-cost, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia vela, orcamento marketing, orcamento web design, orcamento gratuito" />
       </Helmet>
-      <Header />
       
       {/* Hero Section */}
       <section className="pt-44 pb-20 bg-gradient-hero text-white">

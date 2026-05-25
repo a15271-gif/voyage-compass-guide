@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const TermsConditions = () => {
@@ -11,7 +10,6 @@ const TermsConditions = () => {
         <link rel="canonical" href="https://vela-digital-navigator.lovable.app/terms" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
-      <Header />
       <main className="container mx-auto px-4 pt-44 pb-24">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-foreground">Termos e Condições</h1>
