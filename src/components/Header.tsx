@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -13,7 +13,15 @@ const navLinks = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setCollapsed(window.scrollY > 120);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [indicator, setIndicator] = useState<{ x: number; opacity: number }>({
