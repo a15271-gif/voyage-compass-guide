@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import App from "../App";
 
-export const Route = createFileRoute("/")({
-  component: HomeRoute,
+export const Route = createFileRoute("/$")({
+  component: AppRoute,
 });
 
-function HomeRoute() {
+function AppRoute() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
