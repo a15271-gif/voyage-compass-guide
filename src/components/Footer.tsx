@@ -56,7 +56,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="font-bold mb-4">Serviços</h3>
+            <h3 className="text-sm font-semibold tracking-tight mb-5 text-foreground/90">Serviços</h3>
             <ul className="space-y-2 text-sm text-secondary-foreground/80">
               <li>Criação de Websites</li>
               <li>SEO & Google Meu Negócio</li>
@@ -69,7 +69,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4">Contacto</h3>
+            <h3 className="text-sm font-semibold tracking-tight mb-5 text-foreground/90">Contacto</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-secondary-foreground/80">
                 <Mail size={16} className="text-primary" />
