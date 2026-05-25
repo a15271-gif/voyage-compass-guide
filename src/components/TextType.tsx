@@ -85,7 +85,7 @@ const TextType = ({
     }
 
     const ranges = getHighlightRanges(fullText);
-    const result: JSX.Element[] = [];
+    const result: React.ReactElement[] = [];
     let lastIndex = 0;
 
     for (let i = 0; i < displayedText.length; i++) {
