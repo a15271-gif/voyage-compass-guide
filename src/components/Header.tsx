@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import velaLogo from "@/assets/vela-logo-header.png";
+
 
 const navLinks = [
   { name: "Início", path: "/" },
