@@ -3,63 +3,65 @@
 @import "tw-animate-css";
 
 @theme inline {
-  --color-background: hsl(0 0% 7%);
-  --color-foreground: hsl(0 0% 95%);
+  --color-background: hsl(0 0% 5%);
+  --color-foreground: hsl(0 0% 96%);
 
-  --color-primary: hsl(0 80% 50%);
+  --color-primary: hsl(0 75% 55%);
   --color-primary-foreground: hsl(0 0% 100%);
-  --color-primary-hover: hsl(0 80% 40%);
+  --color-primary-hover: hsl(0 75% 48%);
 
-  --color-secondary: hsl(0 0% 10%);
-  --color-secondary-foreground: hsl(0 0% 95%);
-  --color-secondary-hover: hsl(0 0% 14%);
+  --color-secondary: hsl(0 0% 8%);
+  --color-secondary-foreground: hsl(0 0% 96%);
+  --color-secondary-hover: hsl(0 0% 12%);
 
-  --color-accent: hsl(0 0% 12%);
-  --color-accent-foreground: hsl(0 0% 95%);
+  --color-accent: hsl(0 0% 10%);
+  --color-accent-foreground: hsl(0 0% 96%);
 
   --color-muted: hsl(0 0% 9%);
-  --color-muted-foreground: hsl(0 0% 55%);
+  --color-muted-foreground: hsl(0 0% 62%);
 
-  --color-card: hsl(0 0% 11%);
-  --color-card-foreground: hsl(0 0% 95%);
+  --color-card: hsl(0 0% 9%);
+  --color-card-foreground: hsl(0 0% 96%);
 
-  --color-popover: hsl(0 0% 11%);
-  --color-popover-foreground: hsl(0 0% 95%);
+  --color-popover: hsl(0 0% 9%);
+  --color-popover-foreground: hsl(0 0% 96%);
 
-  --color-destructive: hsl(0 80% 50%);
+  --color-destructive: hsl(0 75% 55%);
   --color-destructive-foreground: hsl(0 0% 100%);
 
-  --color-border: hsl(0 0% 18%);
-  --color-input: hsl(0 0% 18%);
-  --color-ring: hsl(0 80% 50%);
+  --color-border: hsl(0 0% 16%);
+  --color-input: hsl(0 0% 16%);
+  --color-ring: hsl(0 75% 55%);
 
-  --color-sidebar: hsl(0 0% 11%);
-  --color-sidebar-foreground: hsl(0 0% 95%);
-  --color-sidebar-primary: hsl(0 80% 50%);
+  --color-sidebar: hsl(0 0% 9%);
+  --color-sidebar-foreground: hsl(0 0% 96%);
+  --color-sidebar-primary: hsl(0 75% 55%);
   --color-sidebar-primary-foreground: hsl(0 0% 100%);
-  --color-sidebar-accent: hsl(0 0% 12%);
-  --color-sidebar-accent-foreground: hsl(0 0% 95%);
-  --color-sidebar-border: hsl(0 0% 18%);
-  --color-sidebar-ring: hsl(0 80% 50%);
+  --color-sidebar-accent: hsl(0 0% 11%);
+  --color-sidebar-accent-foreground: hsl(0 0% 96%);
+  --color-sidebar-border: hsl(0 0% 16%);
+  --color-sidebar-ring: hsl(0 75% 55%);
 
-  --radius: 0.75rem;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius: 1.25rem;
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
 
   --font-oswald: "Oswald", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
+  --font-montserrat: "Montserrat", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Inter", "Montserrat", sans-serif;
 
-  --shadow-elegant: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
-  --shadow-strong: 0 20px 60px -15px hsl(0 0% 0% / 0.6);
+  --shadow-elegant: 0 8px 32px -8px hsl(0 0% 0% / 0.45), 0 2px 8px -2px hsl(0 0% 0% / 0.25);
+  --shadow-strong: 0 24px 64px -16px hsl(0 0% 0% / 0.6), 0 8px 24px -8px hsl(0 0% 0% / 0.35);
+  --shadow-glow: 0 0 60px -10px hsl(0 75% 55% / 0.4);
 
-  --animate-fade-up: fade-up 0.8s ease-out;
-  --animate-fade-down: fade-down 0.8s ease-out;
-  --animate-fade-left: fade-left 0.8s ease-out;
-  --animate-fade-right: fade-right 0.8s ease-out;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-down: fade-down 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-left: fade-left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-right: fade-right 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-fade-in: fade-in 0.6s ease-out;
-  --animate-scale-up: scale-up 0.6s ease-out;
+  --animate-scale-up: scale-up 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-shake: shake 1s ease-in-out infinite;
   --animate-pulse-strong: pulse-strong 1s ease-in-out infinite;
   --animate-draw: draw 2s ease-in-out infinite;
@@ -68,22 +70,49 @@
 
 @layer utilities {
   .bg-gradient-hero {
-    background-image: linear-gradient(135deg, hsl(0 80% 50%), hsl(0 80% 35%));
+    background-image: linear-gradient(135deg, hsl(0 80% 55%), hsl(0 70% 38%));
   }
   .bg-gradient-subtle {
-    background-image: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 10%));
+    background-image: linear-gradient(180deg, hsl(0 0% 5%), hsl(0 0% 9%));
+  }
+  .bg-gradient-radial {
+    background-image: radial-gradient(ellipse at top, hsl(0 60% 18% / 0.4), transparent 60%);
   }
   .shadow-elegant {
-    box-shadow: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.45), 0 2px 8px -2px hsl(0 0% 0% / 0.25);
   }
   .shadow-strong {
-    box-shadow: 0 20px 60px -15px hsl(0 0% 0% / 0.6);
+    box-shadow: 0 24px 64px -16px hsl(0 0% 0% / 0.6), 0 8px 24px -8px hsl(0 0% 0% / 0.35);
+  }
+  .shadow-glow {
+    box-shadow: 0 0 60px -10px hsl(0 75% 55% / 0.4);
   }
   .bg-primary-hover {
-    background-color: hsl(0 80% 40%);
+    background-color: hsl(0 75% 48%);
   }
   .hover\:bg-primary-hover:hover {
-    background-color: hsl(0 80% 40%);
+    background-color: hsl(0 75% 48%);
+  }
+  /* Apple-style glass surface */
+  .glass {
+    background-color: hsl(0 0% 100% / 0.04);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border: 1px solid hsl(0 0% 100% / 0.08);
+  }
+  .glass-strong {
+    background-color: hsl(0 0% 8% / 0.6);
+    backdrop-filter: saturate(180%) blur(32px);
+    -webkit-backdrop-filter: saturate(180%) blur(32px);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+  }
+  .text-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
@@ -108,7 +137,7 @@
   to { opacity: 1; }
 }
 @keyframes scale-up {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 @keyframes shake {
@@ -158,16 +187,24 @@
     max-width: 100%;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-montserrat);
+    letter-spacing: -0.01em;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-oswald);
+    font-family: var(--font-display);
     font-weight: 600;
-    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
   }
+  h1 { letter-spacing: -0.035em; font-weight: 700; }
+  h2 { letter-spacing: -0.03em; }
+  p { line-height: 1.6; }
 }
