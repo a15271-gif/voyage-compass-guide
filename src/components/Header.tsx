@@ -1,67 +1,142 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import velaLogo from "@/assets/vela-logo.png";
+
+const navLinks = [
+  { name: "Início", path: "/" },
+  { name: "Sobre", path: "/about" },
+  { name: "Serviços", path: "/services" },
+  { name: "Blog", path: "/blog" },
+  { name: "Contactos", path: "/contact" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navLinks = [{
-    name: "Início",
-    path: "/"
-  }, {
-    name: "Sobre Nós",
-    path: "/about"
-  }, {
-    name: "Serviços",
-    path: "/services"
-  }, {
-    name: "Blog",
-    path: "/blog"
-  }, {
-    name: "Contactos",
-    path: "/contact"
-  }];
-  return <header className="fixed top-4 left-4 right-4 z-50 w-[calc(100%-2rem)] md:left-8 md:right-8 md:w-[calc(100%-4rem)]">
-      <nav className="mx-auto max-w-6xl bg-background/40 backdrop-blur-xl border border-border/30 rounded-full px-6 py-3 shadow-elegant font-montserrat">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img alt="Vela Agency" src="/lovable-uploads/894b6f27-88af-476b-a469-db2ace67eb75.png" className="h-20 w-20 transition-transform group-hover:scale-105 object-fill" />
-            
-          </Link>
+  const { pathname } = useLocation();
+  const listRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [indicator, setIndicator] = useState<{ x: number; opacity: number }>({
+    x: 0,
+    opacity: 0,
+  });
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            {navLinks.map(link => <Link key={link.path} to={link.path} className="text-foreground/80 hover:text-primary transition-colors font-medium">
-                {link.name}
-              </Link>)}
-            <Link to="/quote">
-              <Button variant="default" size="sm" className="bg-primary hover:bg-primary-hover text-primary-foreground rounded-full">
-                Pedir Orçamento
-              </Button>
+  const moveTo = (idx: number) => {
+    const el = linkRefs.current[idx];
+    const parent = listRef.current;
+    if (!el || !parent) return;
+    const elRect = el.getBoundingClientRect();
+    const pRect = parent.getBoundingClientRect();
+    setIndicator({
+      x: elRect.left - pRect.left + elRect.width / 2 - 4,
+      opacity: 1,
+    });
+  };
+
+  // Snap to active link on route change
+  useEffect(() => {
+    const idx = navLinks.findIndex((l) => l.path === pathname);
+    if (idx >= 0) moveTo(idx);
+    else setIndicator((s) => ({ ...s, opacity: 0 }));
+  }, [pathname]);
+
+  return (
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+      <nav className="relative bg-background/50 backdrop-blur-2xl border border-white/10 rounded-full pl-2 pr-2 py-2 shadow-strong font-montserrat flex items-center gap-1">
+        {/* Logo as inset circular badge */}
+        <Link
+          to="/"
+          className="relative -ml-1 flex items-center justify-center h-12 w-12 rounded-full bg-background border border-white/15 overflow-hidden shrink-0 transition-transform hover:scale-105"
+          aria-label="Início"
+        >
+          <img
+            src="/lovable-uploads/894b6f27-88af-476b-a469-db2ace67eb75.png"
+            alt="Vela Agency"
+            className="h-10 w-10 object-contain"
+          />
+        </Link>
+
+        {/* Desktop links with animated dot indicator */}
+        <div
+          ref={listRef}
+          className="hidden md:flex items-center relative px-3"
+          onMouseLeave={() => {
+            const idx = navLinks.findIndex((l) => l.path === pathname);
+            if (idx >= 0) moveTo(idx);
+            else setIndicator((s) => ({ ...s, opacity: 0 }));
+          }}
+        >
+          {navLinks.slice(0, 4).map((link, i) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              ref={(el) => {
+                linkRefs.current[i] = el;
+              }}
+              onMouseEnter={() => moveTo(i)}
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
+                pathname === link.path
+                  ? "text-foreground"
+                  : "text-foreground/70 hover:text-foreground"
+              }`}
+            >
+              {link.name}
             </Link>
-          </div>
+          ))}
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-foreground p-2 hover:bg-accent/50 rounded-full transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Yellow indicator dot */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -bottom-0.5 left-0 h-2 w-2 rounded-full bg-primary transition-all duration-300 ease-out"
+            style={{
+              transform: `translateX(${indicator.x}px)`,
+              opacity: indicator.opacity,
+            }}
+          />
         </div>
+
+        {/* CTA inset pill */}
+        <Link to="/quote" className="hidden md:block">
+          <Button
+            size="sm"
+            className="rounded-full bg-secondary hover:bg-secondary-hover text-foreground border border-white/10 shadow-none hover:-translate-y-0 h-10 px-5"
+          >
+            Contacto
+          </Button>
+        </Link>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-foreground p-2 mx-1 hover:bg-accent/50 rounded-full transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </nav>
 
-      {/* Mobile Navigation - Floating Card */}
-      {isMenuOpen && <div className="md:hidden mt-2 mx-auto max-w-6xl bg-background/95 backdrop-blur-xl border border-border/30 rounded-3xl p-6 shadow-strong animate-fade-in">
-          <div className="space-y-3">
-            {navLinks.map(link => <Link key={link.path} to={link.path} className="block text-foreground/80 hover:text-primary transition-colors font-medium py-2 px-4 rounded-full hover:bg-accent/50" onClick={() => setIsMenuOpen(false)}>
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-strong animate-fade-in">
+          <div className="space-y-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="block text-foreground/80 hover:text-foreground transition-colors font-medium py-2 px-4 rounded-full hover:bg-accent/50"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {link.name}
-              </Link>)}
+              </Link>
+            ))}
             <Link to="/quote" onClick={() => setIsMenuOpen(false)}>
-              <Button variant="default" className="w-full bg-primary hover:bg-primary-hover text-primary-foreground rounded-full mt-2">
-                Pedir Orçamento
-              </Button>
+              <Button className="w-full rounded-full mt-2">Pedir Orçamento</Button>
             </Link>
           </div>
-        </div>}
-    </header>;
+        </div>
+      )}
+    </header>
+  );
 };
+
 export default Header;
