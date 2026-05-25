@@ -2,21 +2,19 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
 import velaLogo from "@/assets/vela-logo.png";
 const Footer = () => {
-  return <footer className="bg-secondary text-secondary-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+  return <footer className="bg-secondary/60 backdrop-blur-xl border-t border-white/[0.06] text-secondary-foreground">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img alt="Vela Agency" src="/lovable-uploads/975ed2ad-8a3a-46d6-94e0-3f50842ccc3a.png" className="h-52 w-52 object-fill" />
-              
+              <img alt="Vela Agency" src="/lovable-uploads/975ed2ad-8a3a-46d6-94e0-3f50842ccc3a.png" className="h-40 w-40 object-contain" />
             </div>
-            
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-bold mb-4">Links Rápidos</h3>
+            <h3 className="text-sm font-semibold tracking-tight mb-5 text-foreground/90">Links Rápidos</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-secondary-foreground/80 hover:text-primary transition-colors text-sm">
