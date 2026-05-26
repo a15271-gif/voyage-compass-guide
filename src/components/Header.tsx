@@ -9,7 +9,6 @@ const navLinks = [
   { name: "Início", path: "/" },
   { name: "Sobre", path: "/about" },
   { name: "Serviços", path: "/services" },
-  { name: "Blog", path: "/blog" },
   { name: "Contactos", path: "/contact" },
 ];
 
@@ -166,7 +165,7 @@ const Header = () => {
               size="sm"
               className="rounded-full bg-secondary hover:bg-secondary-hover text-foreground border border-white/10 shadow-none hover:-translate-y-0 h-10 px-5"
             >
-              Contacto
+              Orçamento
             </Button>
           </Link>
         </nav>
