@@ -16,9 +16,22 @@ const navLinks = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
   const { pathname } = useLocation();
 
+  // Track viewport
   useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  // Desktop scroll behavior
+  useEffect(() => {
+    if (isMobile) return;
     let lastY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
@@ -34,7 +47,21 @@ const Header = () => {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isMobile]);
+
+  // Mobile: always collapsed unless expanded
+  useEffect(() => {
+    if (isMobile) {
+      setCollapsed(!mobileExpanded);
+    }
+  }, [isMobile, mobileExpanded]);
+
+  // Close mobile expansion on route change
+  useEffect(() => {
+    setMobileExpanded(false);
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [indicator, setIndicator] = useState<{ x: number; opacity: number }>({
@@ -60,6 +87,13 @@ const Header = () => {
     if (idx >= 0) moveTo(idx);
     else setIndicator((s) => ({ ...s, opacity: 0 }));
   }, [pathname]);
+
+  const handlePillClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault();
+      setMobileExpanded(true);
+    }
+  };
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
@@ -148,6 +182,7 @@ const Header = () => {
         {/* Collapsed pill */}
         <Link
           to="/contact"
+          onClick={handlePillClick}
           className={`absolute inset-0 m-auto flex items-center gap-2 h-12 px-5 rounded-full bg-background/60 backdrop-blur-2xl border border-white/10 shadow-strong font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-background/80 hover:-translate-y-0.5 w-fit ${
             collapsed
               ? "opacity-100 scale-100"
