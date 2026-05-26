@@ -49,18 +49,18 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isMobile]);
 
-  // Mobile: always collapsed unless expanded
+  // Mobile: always collapsed
   useEffect(() => {
     if (isMobile) {
-      setCollapsed(!mobileExpanded);
+      setCollapsed(true);
     }
-  }, [isMobile, mobileExpanded]);
+  }, [isMobile]);
 
-  // Close mobile expansion on route change
+  // Close mobile menu on route change
   useEffect(() => {
-    setMobileExpanded(false);
     setIsMenuOpen(false);
   }, [pathname]);
+
 
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
