@@ -124,7 +124,7 @@ const ServiceDetail = () => {
       {/* About / Features */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Sobre este serviço</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
