@@ -17,7 +17,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState(false);
+  
   const { pathname } = useLocation();
 
   // Track viewport
@@ -49,18 +49,18 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isMobile]);
 
-  // Mobile: always collapsed unless expanded
+  // Mobile: always collapsed
   useEffect(() => {
     if (isMobile) {
-      setCollapsed(!mobileExpanded);
+      setCollapsed(true);
     }
-  }, [isMobile, mobileExpanded]);
+  }, [isMobile]);
 
-  // Close mobile expansion on route change
+  // Close mobile menu on route change
   useEffect(() => {
-    setMobileExpanded(false);
     setIsMenuOpen(false);
   }, [pathname]);
+
 
   const listRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -91,9 +91,10 @@ const Header = () => {
   const handlePillClick = (e: React.MouseEvent) => {
     if (isMobile) {
       e.preventDefault();
-      setMobileExpanded(true);
+      setIsMenuOpen((v) => !v);
     }
   };
+
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
@@ -191,30 +192,49 @@ const Header = () => {
         >
           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
           Vamos trabalhar juntos
-          <ArrowRight size={14} className="opacity-70" />
+          <span className="ml-1 md:hidden transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </span>
+          <ArrowRight size={14} className="opacity-70 hidden md:inline" />
+
         </Link>
       </div>
 
       {/* Mobile menu */}
-      {isMenuOpen && !collapsed && (
-        <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-strong animate-fade-in">
-          <div className="space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className="block text-foreground/80 hover:text-foreground transition-colors font-medium py-2 px-4 rounded-full hover:bg-accent/50"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link to="/quote" onClick={() => setIsMenuOpen(false)}>
-              <Button className="w-full rounded-full mt-2">Pedir Orçamento</Button>
+      <div
+        className={`md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-strong origin-top transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isMenuOpen
+            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="space-y-1">
+          {navLinks.map((link, i) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              style={{ transitionDelay: isMenuOpen ? `${80 + i * 40}ms` : "0ms" }}
+              className={`block text-foreground/80 hover:text-foreground transition-all duration-500 ease-out font-medium py-2 px-4 rounded-full hover:bg-accent/50 ${
+                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {link.name}
             </Link>
-          </div>
+          ))}
+          <Link
+            to="/quote"
+            onClick={() => setIsMenuOpen(false)}
+            style={{ transitionDelay: isMenuOpen ? `${80 + navLinks.length * 40}ms` : "0ms" }}
+            className={`block transition-all duration-500 ease-out ${
+              isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
+            <Button className="w-full rounded-full mt-2">Pedir Orçamento</Button>
+          </Link>
         </div>
-      )}
+      </div>
+
     </header>
   );
 };
