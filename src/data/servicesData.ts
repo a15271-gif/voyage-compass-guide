@@ -141,7 +141,7 @@ export const servicesData: ServiceDetail[] = [
     ],
     image: socialImage,
     features: [
-      "2 publicações por semana no Instagram e Facebook",
+      "Publicações semanais/mensais no Instagram e Facebook",
       "Design profissional de posts e stories",
       "Calendário de conteúdos planeado mensalmente",
       "Gestão de comentários e mensagens diretas",
