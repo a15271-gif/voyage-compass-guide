@@ -101,7 +101,7 @@ const Home = () => {
   return <div className="min-h-screen bg-background">
       <Helmet>
         <title>Agência Vela | Marketing Digital e Web Design | Algarve e Tavira</title>
-        <meta name="description" content="Agência Vela - Especialistas em marketing digital, web design e criação de websites no Algarve. Sites desde 700€. Agência de marketing em Tavira com SEO, redes sociais e branding low-cost para pequenos negócios." />
+        <meta name="description" content="Agência Vela - Especialistas em marketing digital, web design e criação de websites no Algarve. Sites desde 700€. Agência de marketing em Tavira com SEO, redes sociais e branding acessível para pequenos negócios." />
         <link rel="canonical" href="https://vela-digital-navigator.lovable.app/" />
         <meta property="og:title" content="Agência Vela | Marketing Digital e Web Design | Algarve e Tavira" />
         <meta property="og:description" content="Agência Vela - Especialistas em marketing digital e web design no Algarve. Sites desde 700€. Marketing Tavira." />
@@ -144,7 +144,7 @@ const Home = () => {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed font-normal text-balance">
-            Especialistas em criação de websites, web design, SEO, Google Meu Negócio e gestão de redes sociais. Sites desde <span className="text-white font-medium">700€</span>. Marketing low-cost profissional para pequenos negócios.
+            Especialistas em criação de websites, web design, SEO, Google Meu Negócio e gestão de redes sociais. Sites desde <span className="text-white font-medium">700€</span>. Marketing acessível profissional para pequenos negócios.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link to="/quote">
@@ -258,7 +258,7 @@ const Home = () => {
             Agência de Marketing em Tavira e Algarve
           </h2>
           <p className="text-xl text-secondary-foreground/80 max-w-3xl mx-auto mb-8">
-            Especialistas digitais dedicados ao crescimento e impulsão de pequenos negócios. Oferecemos automatização, otimização de negócio e estratégias personalizadas de marketing low-cost que cabem no seu orçamento.
+            Especialistas digitais dedicados ao crescimento e impulsão de pequenos negócios. Oferecemos automatização, otimização de negócio e estratégias personalizadas de marketing acessível que cabem no seu orçamento.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/quote">

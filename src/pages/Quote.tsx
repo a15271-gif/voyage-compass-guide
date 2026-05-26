@@ -101,7 +101,7 @@ const Quote = () => {
         <meta property="og:title" content="Orçamento Gratuito | Agência Vela" />
         <meta property="og:description" content="Peça orçamento gratuito para marketing digital e web design. Resposta em 24h." />
         <meta property="og:url" content="https://vela-digital-navigator.lovable.app/quote" />
-        <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, orçamento marketing, orçamento web design, orçamento gratuito, agência vela, marketing low-cost, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia vela, orcamento marketing, orcamento web design, orcamento gratuito" />
+        <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, orçamento marketing, orçamento web design, orçamento gratuito, agência vela, marketing acessível, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia vela, orcamento marketing, orcamento web design, orcamento gratuito" />
       </Helmet>
       
       {/* Hero Section */}

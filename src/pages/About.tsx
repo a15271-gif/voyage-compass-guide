@@ -68,10 +68,10 @@ const About = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">A Nossa Missão</h2>
             <p className="text-xl text-secondary-foreground/90 leading-relaxed">
-              Impulsão e crescimento de pequenos negócios através de serviços profissionais de marketing digital, 
-              web design e automatização. Como gestores de marketing especializados, acreditamos que qualquer negócio 
-              merece ter acesso a websites, branding e otimização digital de qualidade para crescer e competir 
-              no mercado atual com soluções low-cost.
+              Impulsão e crescimento de pequenos negócios através de serviços profissionais de marketing digital,
+              web design e automatização. Como gestores de marketing especializados, acreditamos que qualquer negócio
+              merece ter acesso a websites, branding e otimização digital de qualidade para crescer e competir
+              no mercado atual com soluções acessíveis.
             </p>
           </div>
         </div>
