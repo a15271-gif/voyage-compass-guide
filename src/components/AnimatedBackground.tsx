@@ -9,7 +9,7 @@ const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
       {/* Centered 3D sail */}
-      <div className="absolute left-1/2 top-1/2 h-[70vh] w-[70vh] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 opacity-70">
+      <div className="absolute left-1/2 top-1/2 h-[85vh] w-[85vh] max-w-[95vw] -translate-x-1/2 -translate-y-1/2 opacity-85">
         {mounted && (
           <Suspense fallback={null}>
             <Sail3D />

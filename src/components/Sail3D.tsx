@@ -2,83 +2,134 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const SAIL_W = 3.2;
-const SAIL_H = 4.6;
-const SEG = 48;
+const LUFF = 5.2;   // vertical edge on mast
+const FOOT = 3.6;   // horizontal edge on boom
+const ROWS = 40;    // along luff
+const COLS = 28;    // across to leech
+
+/** Build a triangular sail mesh:
+ *  - left edge (x=0) is the mast (luff), from y=0 (tack) to y=LUFF (head)
+ *  - bottom edge (y=0) is the boom (foot), from x=0 (tack) to x=FOOT (clew)
+ *  - leech is the hypotenuse from head (0,LUFF) to clew (FOOT,0)
+ *  Vertices are laid out in a grid; for each row v (0..1 along luff),
+ *  the row spans x in [0, FOOT*(1-v)] across COLS segments.
+ */
+function buildSailGeometry() {
+  const positions: number[] = [];
+  const uvs: number[] = [];
+  const indices: number[] = [];
+
+  for (let r = 0; r <= ROWS; r++) {
+    const v = r / ROWS;
+    const rowWidth = FOOT * (1 - v);
+    for (let c = 0; c <= COLS; c++) {
+      const u = c / COLS;
+      const x = u * rowWidth;
+      const y = v * LUFF;
+      positions.push(x, y, 0);
+      uvs.push(u, v);
+    }
+  }
+
+  const stride = COLS + 1;
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const a = r * stride + c;
+      const b = a + 1;
+      const d = a + stride;
+      const e = d + 1;
+      indices.push(a, d, b);
+      indices.push(b, d, e);
+    }
+  }
+
+  const geom = new THREE.BufferGeometry();
+  geom.setAttribute(
+    "position",
+    new THREE.BufferAttribute(new Float32Array(positions), 3)
+  );
+  geom.setAttribute("uv", new THREE.BufferAttribute(new Float32Array(uvs), 2));
+  geom.setIndex(indices);
+  geom.computeVertexNormals();
+  return geom;
+}
 
 function Sail() {
+  const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
-  const geomRef = useRef<THREE.PlaneGeometry>(null);
-
-  // Store original positions to displace from
-  const original = useMemo(() => {
-    const geom = new THREE.PlaneGeometry(SAIL_W, SAIL_H, SEG, SEG);
-    const pos = geom.attributes.position.array as Float32Array;
-    return new Float32Array(pos);
-  }, []);
+  const geom = useMemo(() => buildSailGeometry(), []);
+  const original = useMemo(
+    () => new Float32Array(geom.attributes.position.array as Float32Array),
+    [geom]
+  );
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime() * 0.6;
-    const geom = geomRef.current;
-    if (!geom) return;
+    const t = state.clock.getElapsedTime() * 0.5;
     const pos = geom.attributes.position.array as Float32Array;
 
     for (let i = 0; i < pos.length; i += 3) {
       const ox = original[i];
       const oy = original[i + 1];
-      // Distance from mast (left edge): more flex toward the right (free leech)
-      const u = (ox + SAIL_W / 2) / SAIL_W; // 0 at mast, 1 at leech
-      const v = (oy + SAIL_H / 2) / SAIL_H; // 0 bottom, 1 top
 
-      // Wind ripple: traveling wave along x, modulated vertically
-      const wave =
-        Math.sin(ox * 2.2 - t * 1.8) * 0.18 +
-        Math.sin(ox * 4.5 + oy * 1.3 - t * 2.4) * 0.07;
+      // Distance from mast (luff), normalized by available width at that height
+      const rowWidth = FOOT * (1 - oy / LUFF) || 0.0001;
+      const u = ox / rowWidth;          // 0 at luff, 1 at leech
+      const vy = oy / LUFF;             // 0 boom, 1 head
 
-      // Belly: sail curves away from mast
-      const belly = Math.sin(u * Math.PI) * 0.55;
+      // Billowing belly (anchored at luff, foot, and head)
+      const belly =
+        Math.sin(u * Math.PI) *           // 0 at mast & leech
+        Math.sin(vy * Math.PI) *          // 0 at boom & head
+        0.95;
 
-      // Vertical taper (less movement near boom/head)
-      const taper = Math.sin(v * Math.PI) * 0.6 + 0.4;
+      // Wind ripples traveling across the sail
+      const ripple =
+        Math.sin(u * 6.0 - t * 2.2) * 0.08 +
+        Math.sin(u * 11.0 + vy * 3.0 - t * 3.1) * 0.04;
 
-      const z = (belly + wave * taper) * u; // anchored at mast (u=0)
+      const z = belly + ripple * Math.sin(u * Math.PI) * Math.sin(vy * Math.PI);
       pos[i + 2] = z;
-
-      // Slight horizontal pull as it bellies
-      pos[i] = ox - belly * 0.04 * u;
+      // Slight inward pull as it bellies (keeps edges anchored)
+      pos[i] = ox - belly * 0.05 * u;
     }
     geom.attributes.position.needsUpdate = true;
     geom.computeVertexNormals();
 
-    // Gentle overall sway
-    if (meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(t * 0.4) * 0.08;
-      meshRef.current.rotation.z = Math.sin(t * 0.3) * 0.02;
+    if (groupRef.current) {
+      groupRef.current.rotation.y = Math.sin(t * 0.35) * 0.06 - 0.15;
+      groupRef.current.rotation.z = Math.sin(t * 0.25) * 0.015;
     }
   });
 
   return (
-    <group position={[0.2, 0, 0]}>
+    <group ref={groupRef} position={[-0.4, -2.2, 0]}>
       {/* Mast */}
-      <mesh position={[-SAIL_W / 2, 0, 0]}>
-        <cylinderGeometry args={[0.04, 0.05, SAIL_H + 0.6, 16]} />
-        <meshStandardMaterial color="#d8d4cc" roughness={0.6} metalness={0.3} />
+      <mesh position={[0, LUFF / 2 + 0.1, 0]}>
+        <cylinderGeometry args={[0.06, 0.07, LUFF + 0.8, 20]} />
+        <meshStandardMaterial color="#cfc7b6" roughness={0.5} metalness={0.35} />
+      </mesh>
+      {/* Masthead cap */}
+      <mesh position={[0, LUFF + 0.55, 0]}>
+        <sphereGeometry args={[0.09, 16, 16]} />
+        <meshStandardMaterial color="#b8ad97" roughness={0.4} metalness={0.5} />
       </mesh>
       {/* Boom */}
-      <mesh position={[0, -SAIL_H / 2 - 0.05, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.035, 0.035, SAIL_W + 0.2, 12]} />
-        <meshStandardMaterial color="#c9c4ba" roughness={0.6} metalness={0.3} />
+      <mesh
+        position={[FOOT / 2, -0.02, 0]}
+        rotation={[0, 0, Math.PI / 2]}
+      >
+        <cylinderGeometry args={[0.05, 0.05, FOOT + 0.1, 14]} />
+        <meshStandardMaterial color="#bdb39d" roughness={0.5} metalness={0.35} />
       </mesh>
       {/* Sail */}
-      <mesh ref={meshRef} position={[0, 0, 0]}>
-        <planeGeometry ref={geomRef} args={[SAIL_W, SAIL_H, SEG, SEG]} />
+      <mesh ref={meshRef} geometry={geom} castShadow>
         <meshStandardMaterial
-          color="#f5f1e8"
+          color="#f6f1e3"
           side={THREE.DoubleSide}
-          roughness={0.85}
-          metalness={0.0}
-          emissive="#1a1a1a"
-          emissiveIntensity={0.05}
+          roughness={0.78}
+          metalness={0.02}
+          emissive="#3a3526"
+          emissiveIntensity={0.18}
         />
       </mesh>
     </group>
@@ -88,13 +139,14 @@ function Sail() {
 const Sail3D = () => {
   return (
     <Canvas
-      camera={{ position: [3.8, 0.4, 4.2], fov: 38 }}
+      camera={{ position: [4.5, 1.2, 6.5], fov: 38 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
     >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[5, 6, 4]} intensity={1.4} color="#ffffff" />
-      <directionalLight position={[-4, 2, -2]} intensity={0.4} color="#7a8fb8" />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[6, 8, 5]} intensity={2.2} color="#fff4d6" />
+      <directionalLight position={[-5, 3, -2]} intensity={0.7} color="#6b8cc9" />
+      <pointLight position={[0, 2, 4]} intensity={0.6} color="#ffffff" />
       <Sail />
     </Canvas>
   );
