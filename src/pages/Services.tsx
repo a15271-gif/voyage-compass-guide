@@ -4,99 +4,18 @@ import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import websiteImage from "@/assets/service-website.jpg";
-import socialImage from "@/assets/service-social.jpg";
-import googleAdsImage from "@/assets/service-google-ads.jpg";
-import seoImage from "@/assets/service-seo.jpg";
-import brandingImage from "@/assets/service-branding.jpg";
-import aiImage from "@/assets/service-ai.jpg";
+import { servicesData } from "@/data/servicesData";
 
 const Services = () => {
   const servicesGrid = useScrollAnimation();
-  
-  
-  const services = [
-    {
-      title: "Criação de Websites e Web Design",
-      
-      description: "Sites baratos e profissionais, modernos e responsivos, otimizados para conversão. Web design personalizado com SEO básico incluído e formação de gestão.",
-      image: websiteImage,
-      features: [
-        "Design moderno e responsivo",
-        "SEO básico incluído",
-        "Formulários de contacto",
-        "Integração com redes sociais",
-        "Formação de gestão básica",
-      ],
-    },
-    {
-      title: "SEO e Google Meu Negócio",
-      
-      description: "Otimização contínua para motores de busca e gestão do perfil Google Meu Negócio para máxima visibilidade local.",
-      image: seoImage,
-      features: [
-        "Otimização de palavras-chave",
-        "Gestão Google Meu Negócio",
-        "Criação de conteúdo otimizado",
-        "Relatórios mensais de posicionamento",
-        "Análise da concorrência",
-        "Link building básico",
-      ],
-    },
-    {
-      title: "Gestão de Redes Sociais",
-      
-      description: "Presença consistente e profissional nas redes sociais com conteúdos planeados e publicações regulares.",
-      image: socialImage,
-      features: [
-        "2 publicações por semana",
-        "Design de posts profissionais",
-        "Calendário de conteúdos",
-        "Gestão de comentários",
-        "Relatório mensal de métricas",
-        "Estratégia de crescimento",
-      ],
-    },
-    {
-      title: "Branding e Criação de Logotipos",
-      
-      description: "Criação de logo profissional, moderno e minimalista que representa a identidade da sua marca. Serviço completo de branding acessível.",
-      image: brandingImage,
-      features: [
-        "Conjunto de mockups básicos incluído",
-        "2 rondas de revisões",
-        "Ficheiros em múltiplos formatos",
-        "Versões a cores e preto/branco",
-        "Manual básico de utilização",
-        "Entrega em 7 dias úteis",
-      ],
-    },
-    {
-      title: "Criação e Gestão de Campanhas Google Ads",
-      
-      description: "Campanhas de publicidade Google otimizadas para maximizar o retorno do seu investimento com base em resultados reais.",
-      image: googleAdsImage,
-      features: [
-        "Setup inicial de campanha com estudo de palavras-chave",
-        "Gestão mensal de campanha",
-        "Relatórios de desempenho",
-        "Cobrança ao desempenho",
-      ],
-    },
-    {
-      title: "Integração de Agentes IA",
-      
-      description: "Agentes de inteligência artificial para automatizar a comunicação e processos do seu negócio através de chat, WhatsApp, chamadas e mais.",
-      image: aiImage,
-      features: [
-        "IA de Chat para website",
-        "IA de WhatsApp automatizado",
-        "IA de automação de processos",
-        "IA de chamadas telefónicas",
-        "Treino com dados do seu negócio",
-      ],
-    },
-  ];
+
+  const services = servicesData.map((s) => ({
+    slug: s.slug,
+    title: s.title,
+    description: s.description,
+    image: s.image,
+    features: s.features.slice(0, 5),
+  }));
 
   const servicesJsonLd = {
     "@context": "https://schema.org",
