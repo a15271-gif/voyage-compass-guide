@@ -3,7 +3,7 @@ const AnimatedBackground = () => {
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
       {/* Centered 3D sail video */}
       <video
-        className="absolute left-1/2 top-1/2 h-[90vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-60 mix-blend-screen"
+        className="absolute left-1/2 top-1/2 h-[65vh] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-40 mix-blend-screen"
         src="/videos/sail.mp4"
         autoPlay
         loop
