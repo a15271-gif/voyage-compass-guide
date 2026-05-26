@@ -17,7 +17,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState(false);
+  
   const { pathname } = useLocation();
 
   // Track viewport
