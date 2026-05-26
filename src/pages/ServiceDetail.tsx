@@ -95,7 +95,7 @@ const ServiceDetail = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 leading-tight">
                   {service.title}
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">{service.description}</p>
