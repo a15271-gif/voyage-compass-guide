@@ -116,7 +116,7 @@ const Header = () => {
             <img
               src={velaLogo}
               alt="Vela Agency"
-              className="h-9 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
           </Link>
 
@@ -196,7 +196,7 @@ const Header = () => {
         <img
           src={velaLogo}
           alt="Vela Agency"
-          className="h-6 w-auto object-contain"
+          className="h-8 w-auto object-contain"
         />
         Vamos trabalhar juntos
         <span className="ml-1 transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
