@@ -19,7 +19,18 @@ const Header = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setCollapsed(window.scrollY > 120);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y <= 120) {
+        setCollapsed(false);
+      } else if (y > lastY) {
+        setCollapsed(true);
+      } else if (y < lastY) {
+        setCollapsed(false);
+      }
+      lastY = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
