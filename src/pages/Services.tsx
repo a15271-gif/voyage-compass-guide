@@ -125,7 +125,7 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Helmet>
         <title>Serviços de Marketing Digital | Web Design e SEO | Agência Vela Algarve</title>
         <meta name="description" content="Serviços de marketing digital da Agência Vela: criação de websites desde 700€, SEO, Google Meu Negócio, gestão de redes sociais, branding e agentes IA. Marketing Tavira e Algarve com preços acessíveis." />
@@ -142,7 +142,7 @@ const Services = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="pt-44 pb-20 bg-accent">
+      <section className="pt-44 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">

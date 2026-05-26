@@ -93,7 +93,7 @@ const Quote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Helmet>
         <title>Orçamento Gratuito | Marketing Digital e Web Design | Agência Vela</title>
         <meta name="description" content="Peça orçamento gratuito à Agência Vela. Marketing digital, web design e SEO no Algarve e Tavira. Sites desde 700€. Resposta garantida em 24 horas, sem compromisso." />

@@ -67,7 +67,7 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Helmet>
         <title>Blog de Marketing Digital | Dicas SEO e Web Design | Agência Vela</title>
         <meta name="description" content="Blog da Agência Vela com dicas de marketing digital, SEO, web design e redes sociais para pequenos negócios. Estratégias de marketing Tavira e Algarve para crescimento do seu negócio." />
@@ -79,7 +79,7 @@ const Blog = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="pt-44 pb-20 bg-accent">
+      <section className="pt-44 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
