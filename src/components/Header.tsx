@@ -19,6 +19,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   // Track viewport
   useEffect(() => {
