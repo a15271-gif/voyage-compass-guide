@@ -7,22 +7,36 @@ interface ServiceCardProps {
   description: string;
   image: string;
   features?: string[];
+  slug?: string;
 }
 
-const ServiceCard = ({ title, description, image, features }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, image, features, slug }: ServiceCardProps) => {
+  const detailHref = slug ? `/services/${slug}` : "/services";
+  const CardWrapper = slug ? Link : "div";
+  const wrapperProps = slug ? { to: detailHref } : {};
+
   return (
     <div className="group relative bg-card/60 backdrop-blur-xl border border-white/[0.06] rounded-3xl overflow-hidden shadow-elegant hover:shadow-strong hover:border-white/[0.12] hover:-translate-y-1 transition-all duration-500 ease-out h-full flex flex-col">
-      <div className="relative h-56 overflow-hidden flex-shrink-0">
+      {/* @ts-expect-error - dynamic wrapper */}
+      <CardWrapper {...wrapperProps} className="relative h-56 overflow-hidden flex-shrink-0 block">
         <img
           src={image}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/20 to-transparent" />
-      </div>
+      </CardWrapper>
 
       <div className="p-7 flex flex-col flex-grow">
-        <h3 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h3>
+        {slug ? (
+          <Link to={detailHref}>
+            <h3 className="text-2xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors">
+              {title}
+            </h3>
+          </Link>
+        ) : (
+          <h3 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h3>
+        )}
         <p className="text-muted-foreground mt-3 leading-relaxed">{description}</p>
 
         {features && features.length > 0 && (
@@ -37,11 +51,17 @@ const ServiceCard = ({ title, description, image, features }: ServiceCardProps) 
         )}
 
         <div className="flex gap-3 pt-6 mt-auto">
-          <Link to="/quote" className="flex-1">
-            <Button className="w-full">Pedir Serviço</Button>
-          </Link>
-          <Link to="/contact">
-            <Button variant="outline" size="icon">
+          {slug ? (
+            <Link to={detailHref} className="flex-1">
+              <Button className="w-full">Saber Mais</Button>
+            </Link>
+          ) : (
+            <Link to="/quote" className="flex-1">
+              <Button className="w-full">Pedir Serviço</Button>
+            </Link>
+          )}
+          <Link to={slug ? "/quote" : "/contact"}>
+            <Button variant="outline" size="icon" aria-label="Avançar">
               <ArrowRight size={18} />
             </Button>
           </Link>
