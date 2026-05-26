@@ -289,7 +289,7 @@ const Home = () => {
           </div>
 
           <div className="max-w-6xl mx-auto relative md:py-[100px]">
-            <div className="absolute top-1/2 -translate-y-1/2 left-[50px] right-[50px] h-0.5 bg-primary/30 hidden md:block">
+            <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-screen h-0.5 bg-primary/30 hidden md:block">
               <div className={`h-full bg-primary transition-all duration-[2000ms] ease-out ${processStep1.isVisible ? 'w-full' : 'w-0'}`} />
             </div>
             
