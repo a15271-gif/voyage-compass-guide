@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import velaLogo from "@/assets/vela-logo-header.png";
@@ -19,6 +19,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   // Track viewport
   useEffect(() => {
@@ -196,7 +197,11 @@ const Header = () => {
         <img
           src={velaLogo}
           alt="Vela Agency"
-          className="h-8 w-auto object-contain"
+          className="h-8 w-auto object-contain cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate("/");
+          }}
         />
         Vamos trabalhar juntos
         <span className="ml-1 transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
