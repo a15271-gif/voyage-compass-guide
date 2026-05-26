@@ -30,6 +30,7 @@ const Services = () => {
         "@type": "Service",
         "name": service.title,
         "description": service.description,
+        "url": `https://vela-digital-navigator.lovable.app/services/${service.slug}`,
         "provider": {
           "@type": "ProfessionalService",
           "name": "Agência Vela",
@@ -78,12 +79,12 @@ const Services = () => {
       <section ref={servicesGrid.elementRef} className="py-20">
         <div className={`container mx-auto px-4 transition-all duration-700 ${servicesGrid.isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <ServiceCard
-                key={index}
+                key={service.slug}
+                slug={service.slug}
                 title={service.title}
                 description={service.description}
-                
                 image={service.image}
                 features={service.features}
               />
