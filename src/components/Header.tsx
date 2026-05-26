@@ -192,7 +192,11 @@ const Header = () => {
         >
           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
           Vamos trabalhar juntos
-          <ArrowRight size={14} className="opacity-70" />
+          <span className="ml-1 md:hidden transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </span>
+          <ArrowRight size={14} className="opacity-70 hidden md:inline" />
+
         </Link>
       </div>
 
