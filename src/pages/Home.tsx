@@ -98,7 +98,7 @@ const Home = () => {
     content: "Excelente serviço de SEO. Já apareço nas primeiras pesquisas do Google!",
     website: "https://example.com"
   }];
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Agência Vela | Marketing Digital e Web Design | Algarve e Tavira</title>
         <meta name="description" content="Agência Vela - Especialistas em marketing digital, web design e criação de websites no Algarve. Sites desde 700€. Agência de marketing em Tavira com SEO, redes sociais e branding acessível para pequenos negócios." />
@@ -162,7 +162,7 @@ const Home = () => {
       </section>
 
       {/* Services Preview */}
-      <section ref={servicesSection.elementRef} className="py-20 bg-accent overflow-hidden">
+      <section ref={servicesSection.elementRef} className="py-20 overflow-hidden">
         <div className={`container mx-auto px-4 transition-all duration-700 ${servicesSection.isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px]">
             {/* Left: Title + CTA */}
@@ -320,7 +320,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section ref={testimonialsSection.elementRef} className="py-20 bg-accent">
+      <section ref={testimonialsSection.elementRef} className="py-20">
         <div className={`container mx-auto px-4 transition-all duration-700 ${testimonialsSection.isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">

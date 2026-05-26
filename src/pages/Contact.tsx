@@ -62,7 +62,7 @@ const Contact = () => {
       [e.target.name]: e.target.value
     });
   };
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Contacte a Agência Vela | Marketing Digital Tavira | Algarve Portugal</title>
         <meta name="description" content="Contacte a Agência Vela para marketing digital, web design e SEO no Algarve. Agência de marketing em Tavira. Resposta garantida em 24h. Orçamentos gratuitos sem compromisso." />
@@ -74,7 +74,7 @@ const Contact = () => {
       </Helmet>
       
       {/* Hero Section */}
-      <section className="pt-44 pb-20 bg-accent">
+      <section className="pt-44 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">

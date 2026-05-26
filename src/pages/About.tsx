@@ -10,7 +10,7 @@ const About = () => {
   const missionSection = useScrollAnimation();
   const valuesSection = useScrollAnimation();
   const specializationSection = useScrollAnimation();
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen">
       <Helmet>
         <title>Sobre a Agência Vela | Marketing Digital Tavira e Algarve | Portugal</title>
         <meta name="description" content="Conheça a Agência Vela - agência de marketing digital no Algarve especializada em web design, SEO e branding para pequenos negócios. Marketing Tavira com preços acessíveis e profissionais dedicados." />
@@ -63,7 +63,7 @@ const About = () => {
       </section>
 
       {/* Mission Section */}
-      <section ref={missionSection.elementRef} className="py-20 bg-secondary text-secondary-foreground">
+      <section ref={missionSection.elementRef} className="py-20 text-secondary-foreground">
         <div className={`container mx-auto px-4 transition-all duration-700 ${missionSection.isVisible ? 'animate-scale-up' : 'opacity-0'}`}>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6">A Nossa Missão</h2>
@@ -80,7 +80,7 @@ const About = () => {
 
 
       {/* Values Section - VELA Vertical */}
-      <section ref={valuesSection.elementRef} className="py-20 bg-secondary text-secondary-foreground">
+      <section ref={valuesSection.elementRef} className="py-20 text-secondary-foreground">
         <div className={`container mx-auto px-4 transition-all duration-700 ${valuesSection.isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Os Nossos Valores</h2>
@@ -131,7 +131,7 @@ const About = () => {
       </section>
 
       {/* Team Focus Section */}
-      <section ref={specializationSection.elementRef} className="py-20 bg-accent">
+      <section ref={specializationSection.elementRef} className="py-20">
         <div className={`container mx-auto px-4 transition-all duration-700 ${specializationSection.isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-foreground mb-6 text-center">
