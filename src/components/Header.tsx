@@ -193,7 +193,11 @@ const Header = () => {
           isMenuOpen ? "bg-background/80" : ""
         }`}
       >
-        <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+        <img
+          src={velaLogo}
+          alt="Vela Agency"
+          className="h-6 w-auto object-contain"
+        />
         Vamos trabalhar juntos
         <span className="ml-1 transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
           {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
