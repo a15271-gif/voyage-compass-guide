@@ -91,9 +91,10 @@ const Header = () => {
   const handlePillClick = (e: React.MouseEvent) => {
     if (isMobile) {
       e.preventDefault();
-      setMobileExpanded(true);
+      setIsMenuOpen((v) => !v);
     }
   };
+
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
