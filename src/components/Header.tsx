@@ -98,8 +98,8 @@ const Header = () => {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <div className="relative">
-        {/* Full nav */}
+      {/* Desktop nav */}
+      <div className="relative hidden md:block">
         <nav
           className={`relative bg-background/50 backdrop-blur-2xl border border-white/10 rounded-full pl-2 pr-2 py-2 shadow-strong font-montserrat flex items-center gap-1 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
             collapsed
@@ -120,11 +120,10 @@ const Header = () => {
             />
           </Link>
 
-
           {/* Desktop links with animated dot indicator */}
           <div
             ref={listRef}
-            className="hidden md:flex items-center relative px-3"
+            className="flex items-center relative px-3"
             onMouseLeave={() => {
               const idx = navLinks.findIndex((l) => l.path === pathname);
               if (idx >= 0) moveTo(idx);
@@ -161,7 +160,7 @@ const Header = () => {
           </div>
 
           {/* CTA inset pill */}
-          <Link to="/quote" className="hidden md:block">
+          <Link to="/quote">
             <Button
               size="sm"
               className="rounded-full bg-secondary hover:bg-secondary-hover text-foreground border border-white/10 shadow-none hover:-translate-y-0 h-10 px-5"
@@ -169,18 +168,9 @@ const Header = () => {
               Contacto
             </Button>
           </Link>
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-foreground p-2 mx-1 hover:bg-accent/50 rounded-full transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </nav>
 
-        {/* Collapsed pill */}
+        {/* Desktop collapsed pill */}
         <Link
           to="/contact"
           onClick={handlePillClick}
@@ -192,13 +182,23 @@ const Header = () => {
         >
           <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
           Vamos trabalhar juntos
-          <span className="ml-1 md:hidden transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
-            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
-          </span>
-          <ArrowRight size={14} className="opacity-70 hidden md:inline" />
-
+          <ArrowRight size={14} className="opacity-70" />
         </Link>
       </div>
+
+      {/* Mobile pill — always centered */}
+      <button
+        onClick={() => setIsMenuOpen((v) => !v)}
+        className={`md:hidden flex items-center gap-2 h-12 px-5 rounded-full bg-background/60 backdrop-blur-2xl border border-white/10 shadow-strong font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
+          isMenuOpen ? "bg-background/80" : ""
+        }`}
+      >
+        <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+        Vamos trabalhar juntos
+        <span className="ml-1 transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+          {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+        </span>
+      </button>
 
       {/* Mobile menu */}
       <div
