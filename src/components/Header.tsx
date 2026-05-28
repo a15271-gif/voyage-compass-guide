@@ -210,10 +210,10 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-strong origin-top transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-strong origin-top overflow-hidden transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isMenuOpen
-            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+            ? "opacity-100 max-h-[500px] p-6 pointer-events-auto duration-500"
+            : "opacity-0 max-h-0 p-0 pointer-events-none duration-300"
         }`}
       >
         <div className="space-y-1">
