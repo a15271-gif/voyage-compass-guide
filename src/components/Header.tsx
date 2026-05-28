@@ -186,62 +186,56 @@ const Header = () => {
         </Link>
       </div>
 
-      {/* Mobile morphing pill → menu */}
+      {/* Mobile compact pill → dropdown */}
       <div
-        className={`md:hidden relative bg-background/70 backdrop-blur-2xl border border-white/10 shadow-strong overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`md:hidden relative w-[280px] bg-background/70 backdrop-blur-2xl border border-white/10 shadow-strong overflow-hidden transition-[height,border-radius,background-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isMenuOpen
-            ? "w-[calc(100vw-2rem)] h-[320px] rounded-3xl"
-            : "w-[280px] h-12 rounded-full"
+            ? "h-[292px] rounded-[1.6rem]"
+            : "h-12 rounded-full"
         }`}
       >
-        {/* Logo — sits in same spot in both states (top-left of expanded, left of pill) */}
+        {/* Logo */}
         <Link
           to="/"
           onClick={() => setIsMenuOpen(false)}
-          className={`absolute left-3 z-10 flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isMenuOpen ? "top-3" : "top-1/2 -translate-y-1/2"
-          }`}
+          className="absolute left-3 top-3 z-10 flex items-center"
           aria-label="Início"
         >
           <img src={velaLogo} alt="Vela Agency" className="h-8 w-auto object-contain" />
         </Link>
 
-        {/* Toggle button — pill text + icon collapse; X stays top-right when open */}
+        {/* Toggle button */}
         <button
           onClick={() => setIsMenuOpen((v) => !v)}
-          className={`absolute z-10 flex items-center gap-2 font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isMenuOpen
-              ? "top-3 right-3 h-8 w-8 justify-center rounded-full hover:bg-white/10"
-              : "top-1/2 -translate-y-1/2 right-3 h-8"
-          }`}
+          className="absolute right-3 top-2 z-10 flex h-8 items-center justify-end gap-2 rounded-full font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-colors duration-300 hover:bg-white/10"
           aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
         >
           <span
-            className={`transition-all duration-300 ${
-              isMenuOpen ? "opacity-0 -translate-x-2 w-0" : "opacity-100 translate-x-0"
+            className={`overflow-hidden transition-[width,opacity,transform] duration-300 ${
+              isMenuOpen ? "w-0 opacity-0 -translate-x-1" : "w-[162px] opacity-100 translate-x-0"
             }`}
           >
             Vamos trabalhar juntos
           </span>
-          <span className="transition-transform duration-500" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-500" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
             {isMenuOpen ? <X size={18} /> : <Menu size={16} />}
           </span>
         </button>
 
         {/* Expanded menu content */}
         <div
-          className={`absolute inset-0 pt-16 pb-4 px-6 flex flex-col transition-opacity duration-300 ${
-            isMenuOpen ? "opacity-100 delay-200 pointer-events-auto" : "opacity-0 pointer-events-none"
+          className={`absolute inset-x-0 top-12 bottom-0 flex flex-col px-5 pb-5 transition-[opacity,transform] duration-300 ${
+            isMenuOpen ? "opacity-100 translate-y-0 delay-150 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
           }`}
         >
-          <div className="flex-1 flex flex-col items-center justify-center space-y-1">
+          <div className="flex-1 flex flex-col items-center justify-center gap-1">
             {navLinks.map((link, i) => (
               <Link
                 key={link.path}
                 to={link.path}
                 style={{ transitionDelay: isMenuOpen ? `${250 + i * 50}ms` : "0ms" }}
-                className={`block text-foreground/80 hover:text-foreground transition-all duration-500 ease-out font-medium py-2 px-6 rounded-full hover:bg-accent/50 ${
-                  isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                className={`block w-full rounded-full px-6 py-2 text-center font-medium text-foreground/80 transition-all duration-500 ease-out hover:bg-accent/50 hover:text-foreground ${
+                  isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -254,7 +248,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
             style={{ transitionDelay: isMenuOpen ? `${250 + navLinks.length * 50}ms` : "0ms" }}
             className={`block transition-all duration-500 ease-out ${
-              isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+              isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
             }`}
           >
             <Button className="w-full rounded-full">Pedir Orçamento</Button>
