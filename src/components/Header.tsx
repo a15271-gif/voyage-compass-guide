@@ -186,62 +186,82 @@ const Header = () => {
         </Link>
       </div>
 
-      {/* Mobile pill — always centered */}
-      <button
-        onClick={() => setIsMenuOpen((v) => !v)}
-        className={`md:hidden flex items-center gap-2 h-12 px-5 rounded-full bg-background/60 backdrop-blur-2xl border border-white/10 shadow-strong font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 ${
-          isMenuOpen ? "bg-background/80" : ""
-        }`}
-      >
-        <img
-          src={velaLogo}
-          alt="Vela Agency"
-          className="h-8 w-auto object-contain cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate("/");
-          }}
-        />
-        Vamos trabalhar juntos
-        <span className="ml-1 transition-transform duration-300" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
-          {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
-        </span>
-      </button>
-
-      {/* Mobile menu */}
+      {/* Mobile morphing pill → menu */}
       <div
-        className={`md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-strong origin-top overflow-hidden transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`md:hidden relative bg-background/70 backdrop-blur-2xl border border-white/10 shadow-strong overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isMenuOpen
-            ? "opacity-100 max-h-[500px] p-6 pointer-events-auto duration-500"
-            : "opacity-0 max-h-0 p-0 pointer-events-none duration-300"
+            ? "w-[calc(100vw-2rem)] h-[320px] rounded-3xl"
+            : "w-[280px] h-12 rounded-full"
         }`}
       >
-        <div className="space-y-1">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              style={{ transitionDelay: isMenuOpen ? `${80 + i * 40}ms` : "0ms" }}
-              className={`block text-foreground/80 hover:text-foreground transition-all duration-500 ease-out font-medium py-2 px-4 rounded-full hover:bg-accent/50 ${
-                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.name}
-            </Link>
-          ))}
+        {/* Logo — sits in same spot in both states (top-left of expanded, left of pill) */}
+        <Link
+          to="/"
+          onClick={() => setIsMenuOpen(false)}
+          className={`absolute left-3 z-10 flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMenuOpen ? "top-3" : "top-1/2 -translate-y-1/2"
+          }`}
+          aria-label="Início"
+        >
+          <img src={velaLogo} alt="Vela Agency" className="h-8 w-auto object-contain" />
+        </Link>
+
+        {/* Toggle button — pill text + icon collapse; X stays top-right when open */}
+        <button
+          onClick={() => setIsMenuOpen((v) => !v)}
+          className={`absolute z-10 flex items-center gap-2 font-montserrat text-sm font-medium text-foreground whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMenuOpen
+              ? "top-3 right-3 h-8 w-8 justify-center rounded-full hover:bg-white/10"
+              : "top-1/2 -translate-y-1/2 right-3 h-8"
+          }`}
+          aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+        >
+          <span
+            className={`transition-all duration-300 ${
+              isMenuOpen ? "opacity-0 -translate-x-2 w-0" : "opacity-100 translate-x-0"
+            }`}
+          >
+            Vamos trabalhar juntos
+          </span>
+          <span className="transition-transform duration-500" style={{ transform: isMenuOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
+            {isMenuOpen ? <X size={18} /> : <Menu size={16} />}
+          </span>
+        </button>
+
+        {/* Expanded menu content */}
+        <div
+          className={`absolute inset-0 pt-16 pb-4 px-6 flex flex-col transition-opacity duration-300 ${
+            isMenuOpen ? "opacity-100 delay-200 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="flex-1 flex flex-col items-center justify-center space-y-1">
+            {navLinks.map((link, i) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                style={{ transitionDelay: isMenuOpen ? `${250 + i * 50}ms` : "0ms" }}
+                className={`block text-foreground/80 hover:text-foreground transition-all duration-500 ease-out font-medium py-2 px-6 rounded-full hover:bg-accent/50 ${
+                  isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
           <Link
             to="/quote"
             onClick={() => setIsMenuOpen(false)}
-            style={{ transitionDelay: isMenuOpen ? `${80 + navLinks.length * 40}ms` : "0ms" }}
+            style={{ transitionDelay: isMenuOpen ? `${250 + navLinks.length * 50}ms` : "0ms" }}
             className={`block transition-all duration-500 ease-out ${
               isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
           >
-            <Button className="w-full rounded-full mt-2">Pedir Orçamento</Button>
+            <Button className="w-full rounded-full">Pedir Orçamento</Button>
           </Link>
         </div>
       </div>
+
 
     </header>
   );
