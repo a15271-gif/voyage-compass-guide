@@ -100,13 +100,45 @@ const Home = () => {
   }];
   return <div className="min-h-screen">
       <Helmet>
-        <title>Agência Vela | Marketing Digital e Web Design | Algarve e Tavira</title>
-        <meta name="description" content="Agência Vela - Especialistas em marketing digital, web design e criação de websites no Algarve. Sites desde 700€. Agência de marketing em Tavira com SEO, redes sociais e branding acessível para pequenos negócios." />
-        <link rel="canonical" href="https://vela-digital-navigator.lovable.app/" />
-        <meta property="og:title" content="Agência Vela | Marketing Digital e Web Design | Algarve e Tavira" />
-        <meta property="og:description" content="Agência Vela - Especialistas em marketing digital e web design no Algarve. Sites desde 700€. Marketing Tavira." />
-        <meta property="og:url" content="https://vela-digital-navigator.lovable.app/" />
+        <title>Agência Vela | Marketing Digital e Web Design Algarve</title>
+        <meta name="description" content="Agência Vela — marketing digital, web design e criação de websites no Algarve. Sites desde 700€, SEO, redes sociais e branding acessível." />
+        <link rel="canonical" href="https://voyage-compass-guide.lovable.app/" />
+        <meta property="og:title" content="Agência Vela | Marketing Digital e Web Design Algarve" />
+        <meta property="og:description" content="Marketing digital, web design e criação de websites no Algarve. Sites desde 700€, SEO, redes sociais e branding." />
+        <meta property="og:url" content="https://voyage-compass-guide.lovable.app/" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "name": "Agência Vela",
+              "url": "https://voyage-compass-guide.lovable.app/",
+              "logo": "https://voyage-compass-guide.lovable.app/og-image.png",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+351-968-334-043",
+                "contactType": "customer service",
+                "areaServed": "PT",
+                "availableLanguage": ["Portuguese"]
+              }
+            },
+            {
+              "@type": "LocalBusiness",
+              "name": "Agência Vela",
+              "image": "https://voyage-compass-guide.lovable.app/og-image.png",
+              "url": "https://voyage-compass-guide.lovable.app/",
+              "telephone": "+351-968-334-043",
+              "priceRange": "€€",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Tavira",
+                "addressRegion": "Algarve",
+                "addressCountry": "PT"
+              }
+            }
+          ]
+        })}</script>
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, agência vela, marketing digital, web design, criação de websites, SEO, google meu negócio, gestão de redes sociais, branding, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia de comunicacao, agencia de webdesign, agencia vela, criacao de websites, criacao de website, gestao de redes sociais, google meu negocio" />
       </Helmet>
       

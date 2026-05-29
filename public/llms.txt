@@ -1,0 +1,24 @@
+# Agência Vela
+
+> Agência de marketing digital e web design no Algarve (Tavira), com atuação em todo Portugal. Criação de websites, SEO, gestão de redes sociais, branding, Google Ads e agentes de IA.
+
+## Pages
+
+- [Início](/): Apresentação da Agência Vela e principais serviços.
+- [Sobre](/about): Quem somos, missão e equipa.
+- [Serviços](/services): Lista completa de serviços de marketing digital.
+- [Criação de Websites](/services/criacao-de-websites): Sites profissionais e responsivos desde 700€.
+- [SEO e Google Meu Negócio](/services/seo-google-meu-negocio): Otimização para pesquisa local.
+- [Gestão de Redes Sociais](/services/gestao-de-redes-sociais): Publicações no Instagram e Facebook.
+- [Branding e Logotipos](/services/branding-e-logotipos): Identidade visual e manual de marca.
+- [Google Ads](/services/google-ads): Campanhas pagas no Google.
+- [Agentes IA](/services/agentes-ia): Integração de assistentes de inteligência artificial.
+- [Contactos](/contact): Formas de contacto.
+- [Orçamento](/quote): Pedir orçamento gratuito.
+- [FAQ](/faq): Perguntas frequentes.
+
+## Optional
+
+- [Política de Privacidade](/privacy)
+- [Política de Cookies](/cookies)
+- [Termos e Condições](/terms)
