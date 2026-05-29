@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://vela-digital-navigator.lovable.app/sitemap.xml
+Sitemap: https://voyage-compass-guide.lovable.app/sitemap.xml

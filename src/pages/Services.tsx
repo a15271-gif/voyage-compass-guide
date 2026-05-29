@@ -47,15 +47,15 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Serviços de Marketing Digital | Web Design e SEO | Agência Vela Algarve</title>
-        <meta name="description" content="Serviços de marketing digital da Agência Vela: criação de websites desde 700€, SEO, Google Meu Negócio, gestão de redes sociais, branding e agentes IA. Marketing Tavira e Algarve com preços acessíveis." />
-        <link rel="canonical" href="https://vela-digital-navigator.lovable.app/services" />
+        <title>Serviços | Marketing Digital e Web Design | Agência Vela</title>
+        <meta name="description" content="Serviços da Agência Vela: websites desde 700€, SEO, Google Meu Negócio, redes sociais, branding e agentes IA no Algarve." />
+        <link rel="canonical" href="https://voyage-compass-guide.lovable.app/services" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Serviços de Marketing Digital | Web Design e SEO | Agência Vela" />
-        <meta property="og:description" content="Serviços de marketing digital: websites desde 700€, SEO, redes sociais e branding no Algarve e Portugal." />
-        <meta property="og:url" content="https://vela-digital-navigator.lovable.app/services" />
-        <meta property="og:image" content="https://vela-digital-navigator.lovable.app/og-image.png" />
+        <meta property="og:title" content="Serviços | Marketing Digital e Web Design | Agência Vela" />
+        <meta property="og:description" content="Websites desde 700€, SEO, redes sociais e branding no Algarve e em todo Portugal." />
+        <meta property="og:url" content="https://voyage-compass-guide.lovable.app/services" />
+        <meta property="og:image" content="https://voyage-compass-guide.lovable.app/og-image.png" />
         <meta property="og:locale" content="pt_PT" />
         <meta name="keywords" content="agência de marketing, agência de marketing algarve, marketing algarve, agência criativa, telemarketing, marketing, agência de marketing tavira, marketing tavira, empresa que faz sites, empresa de sites, sites baratos, criação de website, web design, SEO, google meu negócio, gestão de redes sociais, branding, criação de logo, agentes IA, marketing acessível, serviços marketing digital, web design algarve, web design tavira, agencia de marketing, agencia de marketing algarve, agencia de marketing tavira, agencia criativa, agencia de comunicacao, agencia de webdesign, agencia vela, criacao de website, criacao de websites, criacao de logo, gestao de redes sociais, google meu negocio, servicos marketing digital" />
         <script type="application/ld+json">{JSON.stringify(servicesJsonLd)}</script>
