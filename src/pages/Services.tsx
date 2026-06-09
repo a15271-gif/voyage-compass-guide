@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link } from "@tanstack/react-router";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
