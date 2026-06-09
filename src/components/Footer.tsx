@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
 import velaLogo from "@/assets/vela-logo.png";
 const Footer = () => {

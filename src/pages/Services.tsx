@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
