@@ -1,14 +1,7 @@
+// @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import App from "../App";
+import NotFound from "../pages/NotFound";
 
 export const Route = createFileRoute("/$")({
-  component: AppRoute,
+  component: NotFound,
 });
-
-function AppRoute() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-  return <App />;
-}

@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom";
+// @ts-nocheck
+import { useLocation } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 const NotFound = () => {

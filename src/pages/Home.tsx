@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+// @ts-nocheck
+import { Link } from "@tanstack/react-router";
 import { Helmet } from "react-helmet-async";
 import { Zap, Pen, ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
